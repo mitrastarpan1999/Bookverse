@@ -6,18 +6,18 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const baseURL = "https://openlibrary.org/search.json";
 
 // Database configuration
 const db = new pg.Client({
-    user: "postgres",
-    host: "localhost",
-    database: "booknotes",
-    password: "root",
-    port: 5432,
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
+
 
 db.connect();
 
