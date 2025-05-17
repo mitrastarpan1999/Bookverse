@@ -1,0 +1,21 @@
+<header>
+  <div class="header-content">
+    <div class="logo">
+      <h1>📚 BookVerse</h1>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/mybooks">My Books</a>
+      <a href="/stats">Reading Stats</a>
+      <a href="/about">About</a>
+    </nav>
+  </div>
+  <script>
+  function toggleMenu() {
+    const nav = document.querySelector('.nav-links');
+    nav.classList.toggle('active');
+  }
+</script>
+
+</header>

@@ -1,0 +1,43 @@
+<%- include('./partials/head') %>
+<%- include('./partials/header') %>
+
+<h2>Reading Statistics</h2>
+
+<div class="stats-container">
+  <div class="stat-card">
+    <div class="stat-value"><%= stats.total %></div>
+    <div class="stat-label">Books Read</div>
+  </div>
+  
+  <div class="stat-card">
+    <div class="stat-value"><%= stats.average %></div>
+    <div class="stat-label">Average Rating</div>
+  </div>
+</div>
+
+<h3>Top Rated Books</h3>
+<ul class="book-list">
+  <% stats.topBooks.forEach(book => { %>
+    <li class="book-item">
+      <% if (book.cover_id) { %>
+        <img class="book-cover" src="https://covers.openlibrary.org/b/id/<%= book.cover_id %>-M.jpg" alt="Book Cover" />
+      <% } %>
+      
+      <strong class="book-title"><%= book.title %></strong>
+      <div class="book-meta">
+        <span>by <%= book.author %></span>
+        <span>Read on: <%= book.date_read %></span>
+      </div>
+      
+      <div class="rating">
+        Rating: 
+        <div class="stars">
+          <% for(let i = 0; i < book.rating; i++) { %>★<% } %>
+          <% for(let i = book.rating; i < 5; i++) { %>☆<% } %>
+        </div>
+      </div>
+    </li>
+  <% }); %>
+</ul>
+
+<%- include('./partials/footer') %>

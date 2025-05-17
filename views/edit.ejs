@@ -1,0 +1,29 @@
+<%- include('./partials/head') %>
+<%- include('./partials/header') %>
+
+<h2>Edit Book</h2>
+<div class="form-container">
+  <form action="/edit/<%= book.id %>" method="POST">
+    <input type="text" name="title" placeholder="Book Title" value="<%= book.title %>" required />
+    <input type="text" name="author" placeholder="Author" value="<%= book.author %>" />
+    <div class="form-row">
+      <input type="number" name="rating" placeholder="Rating (1-5)" min="1" max="5" value="<%= book.rating %>" />
+      <input type="date" name="date_read" value="<%= book.date_read %>" />
+    </div>
+    <textarea name="notes" rows="5" placeholder="Your notes..."><%= book.notes %></textarea>
+    
+    <div class="book-actions">
+      <button type="submit">Save Changes</button>
+      <a href="/" class="cancel-btn">Cancel</a>
+    </div>
+  </form>
+  
+  <% if (book.cover_id) { %>
+  <div class="edit-cover">
+    <img src="https://covers.openlibrary.org/b/id/<%= book.cover_id %>-M.jpg" alt="Book Cover" />
+    <p>Book cover will be updated automatically based on title</p>
+  </div>
+  <% } %>
+</div>
+
+<%- include('./partials/footer') %>

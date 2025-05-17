@@ -1,0 +1,75 @@
+<%- include('./partials/head') %>
+<%- include('./partials/header') %>
+
+<h2>Add a New Book</h2>
+<div class="form-container">
+  <form action="/add" method="POST">
+    <input type="text" name="title" placeholder="Book Title" required />
+    <input type="text" name="author" placeholder="Author" />
+    <div class="form-row">
+      <input type="number" name="rating" placeholder="Rating (1-5)" min="1" max="5" />
+      <input type="date" name="date_read" />
+    </div>
+    <textarea name="notes" rows="5" placeholder="Your notes..."></textarea>
+    <div class="button-center">
+      <button type="submit">Add Book</button>
+    </div>
+  </form>
+</div>
+
+<hr />
+
+<h2>Books You've Read</h2>
+<ul class="book-list">
+  <% books.forEach(book => { %>
+    <li class="book-item">
+      <% if (book.cover_id) { %>
+        <img class="book-cover" src="https://covers.openlibrary.org/b/id/<%= book.cover_id %>-M.jpg" alt="Book Cover" />
+      <% } %>
+      
+      <strong class="book-title"><%= book.title %></strong>
+      <div class="book-meta">
+        <span>by <%= book.author %></span>
+        <span>Read on: <%= book.date_read %></span>
+      </div>
+      
+      <div class="rating">
+        Rating: 
+        <div class="stars">
+          <% for(let i = 0; i < book.rating; i++) { %>★<% } %>
+          <% for(let i = book.rating; i < 5; i++) { %>☆<% } %>
+        </div>
+      </div>
+      
+      <div class="book-notes">
+        <%= book.notes %>
+      </div>
+      
+      <div class="book-actions">
+        <a href="/edit/<%= book.id %>" class="edit-btn">✏️ Edit</a>
+        <form action="/delete/<%= book.id %>" method="POST" class="inline-form" onsubmit="return confirmDelete()">
+  <button type="submit" class="delete-btn">🗑️ Delete</button>
+</form>
+
+
+        <form action="/favorite/<%= book.id %>" method="POST" class="inline-form favorite-form">
+  <button type="submit" class="favorite-btn" aria-label="Toggle Favorite">
+    <% if (book.favorite) { %>
+      <span style="color: red;">❤️</span>
+    <% } else { %>
+      <span style="color: grey;">🤍</span>
+    <% } %>
+  </button>
+</form>
+
+      </div>
+    </li>
+  <% }); %>
+</ul>
+<script>
+  function confirmDelete() {
+    return confirm("Are you sure you want to delete this book?");
+  }
+</script>
+
+<%- include('./partials/footer') %>
