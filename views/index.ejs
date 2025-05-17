@@ -5,9 +5,9 @@
 <div class="form-container">
   <form action="/add" method="POST">
     <input type="text" name="title" placeholder="Book Title" required />
-    <input type="text" name="author" placeholder="Author" />
+    <input type="text" name="author" placeholder="Author" required/>
     <div class="form-row">
-      <input type="number" name="rating" placeholder="Rating (1-5)" min="1" max="5" />
+      <input type="number" name="rating" placeholder="Rating (1-5)" min="1" max="5" required/>
       <input type="date" name="date_read" />
     </div>
     <textarea name="notes" rows="5" placeholder="Your notes..."></textarea>
