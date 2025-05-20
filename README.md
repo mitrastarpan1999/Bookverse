@@ -28,32 +28,6 @@ A clean, responsive web application for saving and managing personal book notes.
 
 ---
 
-## 📂 Project Structure
-
-book-notes-app/
-│
-├── public/ # Static files (CSS, JS)
-├── views/ # EJS templates
-├── routes/ # App routes
-├── models/ # Sequelize models
-├── controllers/ # Controller logic
-├── config/ # DB config
-├── app.js # Main application entry
-└── README.md # You're here!
-
-yaml
-Copy
-Edit
-
----
-
-## 📦 Installation
-
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/your-username/book-notes-app.git
-   cd book-notes-app
-Install Dependencies
 
 bash
 Copy
